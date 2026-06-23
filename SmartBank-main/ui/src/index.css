@@ -148,6 +148,7 @@ a:hover { text-decoration: underline; }
 
 .login-card button:hover { background: var(--primary-hover); }
 .login-card button:disabled { opacity: 0.6; cursor: not-allowed; }
+.login-card .demo-hint { display: block; text-align: center; margin-top: 16px; font-size: 0.8rem; color: var(--text-muted); }
 
 /* Page */
 .page { max-width: 1200px; }

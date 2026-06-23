@@ -35,12 +35,18 @@ export const useAuthStore = create<AuthState>()(
         }),
 
       login: async (username: string, password: string) => {
-        const res = await fetch('/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password }),
-        })
-        if (!res.ok) throw new Error('Invalid credentials')
+        let res: Response
+        try {
+          res = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password }),
+          })
+        } catch {
+          throw new Error('Cannot reach server. Make sure the backend is running on port 8000.')
+        }
+        if (res.status === 401) throw new Error('Invalid credentials')
+        if (!res.ok) throw new Error(`Server error (${res.status}). Please try again.`)
         const data: TokenResponse = await res.json()
         set({
           accessToken: data.access_token,

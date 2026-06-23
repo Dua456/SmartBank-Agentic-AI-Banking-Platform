@@ -17,8 +17,8 @@ export default function Login() {
       await login(username, password)
       toast.success('Welcome back!')
       navigate('/dashboard')
-    } catch {
-      toast.error('Invalid credentials')
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Invalid credentials')
     } finally {
       setLoading(false)
     }
@@ -47,6 +47,9 @@ export default function Login() {
         <button type="submit" disabled={loading}>
           {loading ? 'Signing in...' : 'Sign In'}
         </button>
+        <small className="demo-hint">
+          Demo: <strong>admin</strong> / <strong>smartbank123</strong>
+        </small>
       </form>
     </div>
   )
