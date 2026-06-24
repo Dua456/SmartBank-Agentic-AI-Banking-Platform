@@ -28,6 +28,7 @@ class Settings(BaseSettings):
     CELERY_BROKER_URL: str = "redis://localhost:6379/1"
     CELERY_RESULT_BACKEND: str = "redis://localhost:6379/2"
     CELERY_ENABLED: bool = False
+    CELERY_WORKER_CONCURRENCY: int = 2
 
     CLERK_SECRET_KEY: str = "sk_test_e1PXpguvuksPYHkxTH2kG7YlCpFqu6s81z6mBlZJfb"
     CLERK_PUBLISHABLE_KEY: str = "pk_test_cmVsYXhlZC1tYXJ0aW4tODUuY2xlcmsuYWNjb3VudHMuZGV2JA"

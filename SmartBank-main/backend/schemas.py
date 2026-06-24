@@ -113,3 +113,46 @@ class WorkflowItem(BaseModel):
 
 class WorkflowListResponse(BaseModel):
     workflows: list[WorkflowItem]
+
+
+class AdminUserResponse(BaseModel):
+    id: str
+    clerk_id: str
+    username: str
+    email: str = ""
+    role: str
+    created_at: str = ""
+    case_count: int = 0
+
+
+class AdminAuditResponse(BaseModel):
+    id: int
+    timestamp: str
+    action: str
+    actor: str
+    resource: str
+    details: str
+    previous_hash: str = ""
+    hash: str = ""
+
+
+class ChatSaveRequest(BaseModel):
+    session_id: str
+    role: str
+    text: str
+    language: Optional[str] = None
+    module: Optional[str] = None
+
+
+class ChatHistoryItem(BaseModel):
+    id: int
+    role: str
+    text: str
+    language: Optional[str] = None
+    module: Optional[str] = None
+    created_at: str = ""
+
+
+class ChatHistoryResponse(BaseModel):
+    session_id: str
+    messages: list[ChatHistoryItem]

@@ -102,3 +102,15 @@ class DocumentVerification(Base):
     fraud_indicators = Column(JSON, default=list)
     extracted_fields = Column(JSON, default=dict)
     created_at = Column(DateTime, default=now_utc)
+
+
+class ChatMessage(Base):
+    __tablename__ = "chat_messages"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    session_id = Column(String, nullable=False)
+    role = Column(String, nullable=False)
+    text = Column(Text, nullable=False)
+    language = Column(String, nullable=True)
+    module = Column(String, nullable=True)
+    user_id = Column(String, nullable=True)
+    created_at = Column(DateTime, default=now_utc)

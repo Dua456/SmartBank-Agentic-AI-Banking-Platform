@@ -27,8 +27,11 @@ export default function ChatWidget() {
   return (
     <div className="chat-widget">
       <div className="chat-header">
-        <strong>Zara — AI Assistant</strong>
-        <button onClick={toggle} className="btn-close">&times;</button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981' }}></div>
+          <strong>Zara — AI Assistant</strong>
+        </div>
+        <button onClick={toggle} className="btn-close">✕</button>
       </div>
       <div className="chat-body" ref={listRef}>
         {messages.map((msg, i) => (
@@ -45,7 +48,11 @@ export default function ChatWidget() {
           placeholder="Type your message..."
           disabled={loading}
         />
-        <button type="submit" disabled={loading}>Send</button>
+        <button type="submit" disabled={loading}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
+            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
       </form>
     </div>
   )

@@ -37,7 +37,7 @@ app.add_middleware(
 
 register_middleware(app)
 
-from backend.routers import auth, dashboard, classify, chat, document, audit, workflows, robots, customers
+from backend.routers import auth, dashboard, classify, chat, document, audit, workflows, robots, customers, admin, chat_history
 
 app.include_router(auth.router)
 app.include_router(dashboard.router)
@@ -48,6 +48,8 @@ app.include_router(audit.router)
 app.include_router(workflows.router)
 app.include_router(robots.router)
 app.include_router(customers.router)
+app.include_router(admin.router)
+app.include_router(chat_history.router)
 
 from backend.websocket_manager import ws_manager
 
@@ -143,6 +145,14 @@ def api_root():
             "robot_notification": "POST /api/robots/notification/send",
             "robot_document": "POST /api/robots/document/generate",
             "robot_audit_verify": "GET /api/robots/audit/verify",
+            "admin_users": "GET /api/admin/users",
+            "admin_user": "GET /api/admin/users/{id}",
+            "admin_update_role": "PATCH /api/admin/users/{id}/role",
+            "admin_audit_logs": "GET /api/admin/audit/logs",
+            "admin_audit_stats": "GET /api/admin/audit/stats",
+            "chat_sessions": "GET /api/chat/history",
+            "chat_session": "GET /api/chat/history/{session_id}",
+            "chat_delete_session": "DELETE /api/chat/history/{session_id}",
         },
     }
 

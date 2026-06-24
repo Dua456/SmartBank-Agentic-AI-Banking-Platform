@@ -1,5 +1,29 @@
 # Changelog
 
+## [2.1.0] - 2026-06-24
+
+### Added
+- Alembic database migration with full table definitions for all 6 models
+- Admin Panel — User Management with search, role badges, case counts
+- Admin Panel — Audit Log viewer with filtering, statistics, hash integrity display
+- Chat History Persistence — messages saved to PostgreSQL with session management
+- Chat Session sidebar UI — create, load, delete chat sessions
+- Celery background tasks wiring with dedicated worker entry point
+- 9 new API endpoints for admin and chat history operations
+
+### Enhanced
+- Backend routing: `admin.py` and `chat_history.py` routers added
+- Chat store (`chatStore.ts`) now persists messages to backend
+- Chat page (`ChatPage.tsx`) with session history sidebar
+- Admin layout (`AdminLayout.tsx`) with full Users and Audit Log UIs
+- Configuration extended: `CELERY_WORKER_CONCURRENCY` setting
+
+### Infrastructure
+- `alembic upgrade head` creates all tables with proper constraints
+- `celery -A backend.celery_worker worker` for background task processing
+- `POST /api/chat/save` endpoint for chat message persistence
+- New dependency: none (uses existing FastAPI + SQLAlchemy stack)
+
 ## [2.0.0] - 2025-06-20
 
 ### Added

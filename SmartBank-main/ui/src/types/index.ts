@@ -94,4 +94,48 @@ export interface ChatMessage {
   role: 'user' | 'assistant'
   text: string
   timestamp: number
+  id?: number
+  language?: string
+  module?: string | null
+}
+
+export interface AdminUser {
+  id: string
+  clerk_id: string
+  username: string
+  email: string
+  role: string
+  created_at: string
+  case_count: number
+}
+
+export interface AdminAuditEntry {
+  id: number
+  timestamp: string
+  action: string
+  actor: string
+  resource: string
+  details: string
+  previous_hash: string
+  hash: string
+}
+
+export interface AuditStats {
+  total_entries: number
+  by_action: Record<string, number>
+  integrity_valid: boolean
+  last_entry_id: number | null
+  last_entry_hash: string | null
+}
+
+export interface ChatSession {
+  session_id: string
+  messages: {
+    id: number
+    role: string
+    text: string
+    language: string | null
+    module: string | null
+    created_at: string
+  }[]
 }
